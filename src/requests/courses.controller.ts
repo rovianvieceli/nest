@@ -13,21 +13,21 @@ import { UpdateCourseDto } from '../domain/update-course.dto';
 
 @Controller('courses')
 export class CoursesController {
-  constructor(private readonly coursesService: CoursesService) {}
+  public constructor(private readonly coursesService: CoursesService) {}
 
   @Get()
   public findAll() {
-    return this.coursesService.findAll();
+    return this.coursesService.findAllCourse();
   }
 
   @Get(':id')
   public findOne(@Param('id') id: string) {
-    return this.coursesService.findOne(id);
+    return this.coursesService.findOneCourse(+id);
   }
 
   @Post()
   public create(@Body() createCourse: CreateCourseDto) {
-    return this.coursesService.create(createCourse);
+    return this.coursesService.createCourse(createCourse);
   }
 
   @Patch(':id')
@@ -35,11 +35,11 @@ export class CoursesController {
     @Param('id') id: string,
     @Body() updateCourse: UpdateCourseDto,
   ) {
-    return this.coursesService.update(id, updateCourse);
+    return this.coursesService.updateCourse(+id, updateCourse);
   }
 
   @Delete(':id')
   public remove(@Param('id') id: string) {
-    return this.coursesService.remove(id);
+    return this.coursesService.removeCourse(+id);
   }
 }
