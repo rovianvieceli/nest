@@ -5,7 +5,7 @@ import {
   ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Tag } from './tag.entity';
+import { Tag } from '../../tag/entities/tag.entity';
 
 @Entity('courses')
 export class Course {
