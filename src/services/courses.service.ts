@@ -32,8 +32,7 @@ export class CoursesService {
     const tags = await Promise.all(
       createCourseDto.tags.map((name: string) => this.preloadTagByName(name)),
     );
-    const data = { ...createCourseDto, tags };
-    const course = this.courseRepository.create(data);
+    const course = this.courseRepository.create({ ...createCourseDto, tags });
     return this.courseRepository.save(course);
   }
 
@@ -43,8 +42,11 @@ export class CoursesService {
       (await Promise.all(
         updateCourseDto.tags.map((name: string) => this.preloadTagByName(name)),
       ));
-    const data = { id: id, ...updateCourseDto, tags };
-    const course = await this.courseRepository.preload(data);
+    const course = await this.courseRepository.preload({
+      id: id,
+      ...updateCourseDto,
+      tags,
+    });
     if (!course) {
       throw new NotFoundException(`Course ID #${id} Not Found`);
     }
