@@ -8,8 +8,8 @@ import {
   Post,
 } from '@nestjs/common';
 import { CoursesService } from '../services/courses.service';
-import { CreateCourseDto } from '../domain/create-course.dto';
-import { UpdateCourseDto } from '../domain/update-course.dto';
+import { CreateCourseDto } from '../dto/create-course.dto';
+import { UpdateCourseDto } from '../dto/update-course.dto';
 
 @Controller('courses')
 export class CoursesController {
